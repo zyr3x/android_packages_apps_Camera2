@@ -441,8 +441,10 @@ public class CameraSettings {
                     disMode, getSupportedDISModes(mParameters));
         }
         if (focusMode != null) {
-            filterUnsupportedOptions(group,
-                    focusMode, mParameters.getSupportedFocusModes());
+            if (!CameraUtil.isFocusAreaSupported(mParameters)) {
+                filterUnsupportedOptions(group,
+                        focusMode, mParameters.getSupportedFocusModes());
+            }
         }
         if (videoFlashMode != null) {
             filterUnsupportedOptions(group,
