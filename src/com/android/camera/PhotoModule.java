@@ -476,13 +476,6 @@ public class PhotoModule
         mLocationManager = new LocationManager(mActivity, mUI);
         mSensorManager = (SensorManager)(mActivity.getSystemService(Context.SENSOR_SERVICE));
 
-        brightnessProgressBar = (ProgressBar)mRootView.findViewById(R.id.progress);
-        if (brightnessProgressBar instanceof SeekBar) {
-            SeekBar seeker = (SeekBar) brightnessProgressBar;
-            seeker.setOnSeekBarChangeListener(mSeekListener);
-        }
-        brightnessProgressBar.setMax(MAXIMUM_BRIGHTNESS);
-        brightnessProgressBar.setProgress(mbrightness);
         skinToneSeekBar = (SeekBar) mRootView.findViewById(R.id.skintoneseek);
         skinToneSeekBar.setOnSeekBarChangeListener(mskinToneSeekListener);
         skinToneSeekBar.setVisibility(View.INVISIBLE);
@@ -2619,7 +2612,7 @@ public class PhotoModule
             doModeSwitch = updateCameraParametersPreference();
         }
 
-        Util.dumpParameters(mParameters);
+        CameraUtil.dumpParameters(mParameters);
         mCameraDevice.setParameters(mParameters);
 
         // Switch to gcam module if HDR+ was selected
